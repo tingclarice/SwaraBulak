@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swara Bulak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-serif bg-[#F6F6F6]">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 flex justify-between items-center px-6 py-4 pt-6 bg-white shadow-md">
+        <img src="src/main/logo_swaraBulak.png" alt="Logo" class="w-12 h-12">
+        <ul class="flex space-x-6 text-sm">
+        <li><a href="index.html" class="hover:underline">Beranda</a></li>
+        <li><a href="profilKampung.html" class="hover:underline">Profil Kampung</a></li>
+        <li><a href="ceritaWarga.html" class="hover:underline">Cerita Warga</a></li>
+        <li><a href="kulinerUMKM.html" class="hover:underline">Kuliner & UMKM</a></li>
+        <li><a href="galeriKampung.html" class="hover:underline">Galeri</a></li>
+        <li><a href="tentangKami.html" class="hover:underline">Tentang Kami</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header class="relative w-2xl">
+        <img src="src/main/header_image.png" alt="Swara Bulak" class="w-full h-[550px] object-cover">
+        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 flex flex-col justify-center items-center px-4 text-white">
+            <h1 class="text-5xl text-center leading-tight text-shadow-lg">Profil Kampung<br>Bulak</h1>
+        </div>
+    </header>
+    
+    <!-- Profil Kampung Bulak -->
+    <h2 class="text-2xl font-bold mb-8 text-center">Profil Kampung Bulak</h2>
+
+    <div class="flex flex-col md:flex-row items-center gap-6 mb-12">
+        <!-- Embedded Map -->
+        <div class="w-full md:w-1/2 h-64 rounded-xl overflow-hidden shadow-md">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.0232234058067!2d112.795187!3d-7.2381899999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7f9c590a1a9a3%3A0xc62c6855e5b63c45!2sPantai%20Kenjeran%20Lama!5e0!3m2!1sen!2sid!4v1747286591212!5m2!1sen!2sid" 
+            class="w-full h-full border-0"
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        </div>
+
+        <p class="text-gray-700 text-justify md:w-1/2">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit luctus sem eu malesuada. Sed tristique metus lacus, vitae volutpat urna dictum sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu massa neque.
+        </p>
+    </div>
+
+    <!-- Sejarah Section -->
+    <h2 class="text-2xl font-bold mb-8 text-center">Sejarah</h2>
+
+    <div class="flex flex-col md:flex-row items-center gap-6">
+        <p class="text-gray-700 text-justify md:w-1/2 order-2 md:order-1">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque blandit luctus sem eu malesuada. Sed tristique metus lacus, vitae volutpat urna dictum sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu massa neque.
+        </p>
+
+        <!-- Sejarah Image -->
+        <div class="w-full md:w-1/2 h-64 rounded-xl overflow-hidden shadow-md order-1 md:order-2">
+        <img src="src/main/sejarah_placeholder-img.png" alt="Kampung Bulak Sejarah" class="w-full h-full object-cover">
+        </div>
+    </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-[#003459] text-white py-10">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Logo & Contact -->
+        <img src="src/main/logo_swaraBulak.png" alt="Logo" class="w-20 mb-4">
+
+        <div>
+            <h3 class="font-semibold text-lg mb-2">HUBUNGI KAMI</h3>
+            <p>Universitas Ciputra Surabaya</p>
+            <p>UC Town, CitraLand, Surabaya 60219, Jawa Timur, Indonesia.</p>
+            <p class="mt-2">universitasciputra@.go.id</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="md:text-right">
+            <ul class="space-y-1">
+            <li><a href="index.html" class="hover:underline">Beranda</a></li>
+            <li><a href="profilKampung.html" class="hover:underline">Profil Kampung</a></li>
+            <li><a href="ceritaWarga.html" class="hover:underline">Cerita Warga</a></li>
+            <li><a href="kulinerUMKM.html" class="hover:underline">Kuliner & UMKM</a></li>
+            <li><a href="galeriKampung.html" class="hover:underline">Galeri</a></li>
+            <li><a href="tentangKami.html" class="hover:underline">Tentang Kami</a></li>
+            </ul>
+        </div>
+        </div>
+        <p class="text-center text-sm mt-10">&copy; 2025 Swara Bulak. All rights reserved</p>
+    </footer>
+</body>
+
+</html>
