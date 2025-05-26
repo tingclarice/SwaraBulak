@@ -6,6 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swara Bulak</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        #slider {
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+        margin: auto;
+        }
+
+        .slides {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+        min-width: 100%;
+        height: 100%;
+        }
+
+        .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        }
+
+        .controls {
+        text-align: center;
+        margin-top: 10px;
+        }
+
+        .controls button {
+        padding: 6px 12px;
+        margin: 0 5px;
+        cursor: pointer;
+        }
+    </style>
 </head>
 
 <body class="font-serif bg-[#F6F6F6]">
@@ -24,7 +64,7 @@
 
 
     <!-- Header -->
-    <header class="relative w-2xl">
+    <header class="relative w-2xl mb-10">
         <img src="src/main/header_image.png" alt="Swara Bulak" class="w-full h-[550px] object-cover">
         <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 flex flex-col justify-center items-center px-4 text-white">
             <h1 class="text-5xl text-center leading-tight text-shadow-lg">Galeri Bulak</h1>
@@ -33,43 +73,44 @@
     </header>
 
     <!-- Image Slider -->
-    <div class="slider">
-    <div class="slides" id="slides">
-        <img src="src/galeriBulak/taman_sby-1.png" alt="Image 1" />
-        <img src="https://via.placeholder.com/600x350?text=Image+2" alt="Image 2" />
-        <img src="https://via.placeholder.com/600x350?text=Image+3" alt="Image 3" />
+    <div id="slider">
+        <div class="slides">
+        <div class="slide"><img src="src/galeriBulak/taman_sby-1.png" alt=""></div>
+        <div class="slide"><img src="src/galeriBulak/taman_sby-2.png" alt=""></div>
+        <div class="slide"><img src="src/galeriBulak/taman_sby-3.png" alt=""></div>
+        </div>
     </div>
-    <div class="navigation">
-        <span class="prev" onclick="prevSlide()">❮</span>
-        <span class="next" onclick="nextSlide()">❯</span>
-    </div>
+
+    <div class="controls">
+        <button id="prev"><img src="src/galeriBulak/LeftArrow.png" width="50px"></button>
+        <button id="next"><img src="src/galeriBulak/RightArrow.png" width="50px"></button>
     </div>
 
     <script>
-    const slides = document.getElementById('slides');
-    const totalSlides = slides.children.length;
-    let index = 0;
+        $(document).ready(function () {
+        let currentIndex = 0;
+        const slides = $('.slide');
+        const totalSlides = slides.length;
 
-    function showSlide(i) {
-        if (i < 0) index = totalSlides - 1;
-        else if (i >= totalSlides) index = 0;
-        else index = i;
+        function showSlide(index) {
+            $('.slides').css('transform', `translateX(-${index * 100}%)`);
+        }
 
-        slides.style.transform = `translateX(-${index * 600}px)`;
-    }
+        $('#next').click(function () {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        });
 
-    function nextSlide() {
-        showSlide(index + 1);
-    }
+        $('#prev').click(function () {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentIndex);
+        });
 
-    function prevSlide() {
-        showSlide(index - 1);
-    }
-
-    // Optional: auto slide every 5 seconds
-    setInterval(() => {
-        nextSlide();
-    }, 5000);
+        // Auto-slide every 3 seconds
+        setInterval(function () {
+            $('#next').click();
+        }, 3000);
+        });
     </script>
 
     <!-- Footer -->
