@@ -10,9 +10,22 @@
 
 <body class="font-serif bg-[#F6F6F6]">
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 flex justify-between items-center px-6 py-4 pt-6 bg-white shadow-md">
+    <nav class="sticky top-0 z-50 bg-white shadow-md px-6 py-4">
+    <div class="flex justify-between items-center">
+        <!-- Logo -->
         <img src="src/main/logo_swaraBulak.png" alt="Logo" class="w-12 h-12">
-        <ul class="flex space-x-6 text-sm">
+
+        <!-- Hamburger Button -->
+        <button id="menu-toggle" class="md:hidden focus:outline-none">
+        <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        </button>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex space-x-6 text-sm">
         <li><a href="index.html" class="hover:underline">Beranda</a></li>
         <li><a href="profilKampung.html" class="hover:underline">Profil Kampung</a></li>
         <li><a href="ceritaWarga.html" class="hover:underline">Cerita Warga</a></li>
@@ -20,6 +33,18 @@
         <li><a href="galeriKampung.html" class="hover:underline">Galeri</a></li>
         <li><a href="tentangKami.html" class="hover:underline">Tentang Kami</a></li>
         </ul>
+    </div>
+
+    <!-- Mobile Menu -->
+    <ul id="nav-menu"
+        class="md:hidden overflow-hidden max-h-0 transition-all duration-300 ease-in-out flex flex-col space-y-2 mt-4 text-sm">
+        <li><a href="index.html" class="block py-2 px-2 hover:underline">Beranda</a></li>
+        <li><a href="profilKampung.html" class="block py-2 px-2 hover:underline">Profil Kampung</a></li>
+        <li><a href="ceritaWarga.html" class="block py-2 px-2 hover:underline">Cerita Warga</a></li>
+        <li><a href="kulinerUMKM.html" class="block py-2 px-2 hover:underline">Kuliner & UMKM</a></li>
+        <li><a href="galeriKampung.html" class="block py-2 px-2 hover:underline">Galeri</a></li>
+        <li><a href="tentangKami.html" class="block py-2 px-2 hover:underline">Tentang Kami</a></li>
+    </ul>
     </nav>
 
     <!-- Header -->
@@ -126,6 +151,32 @@
         </div>
         <p class="text-center text-sm mt-10">&copy; 2025 Swara Bulak. All rights reserved</p>
     </footer>
+
+    <script>
+        const toggleBtn = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        let menuOpen = false;
+
+        toggleBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+
+            if (menuOpen) {
+            navMenu.style.maxHeight = navMenu.scrollHeight + 'px';
+            } else {
+            navMenu.style.maxHeight = '0';
+            }
+        });
+
+        // Close menu when a mobile link is clicked
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+            menuOpen = false;
+            navMenu.style.maxHeight = '0';
+            });
+        });
+    </script>
 </body>
 
 </html>

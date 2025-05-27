@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Swara Bulak</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
         #slider {
@@ -50,9 +49,22 @@
 
 <body class="font-serif bg-[#F6F6F6]">
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 flex justify-between items-center px-6 py-4 pt-6 bg-white shadow-md">
+    <nav class="sticky top-0 z-50 bg-white shadow-md px-6 py-4">
+    <div class="flex justify-between items-center">
+        <!-- Logo -->
         <img src="src/main/logo_swaraBulak.png" alt="Logo" class="w-12 h-12">
-        <ul class="flex space-x-6 text-sm">
+
+        <!-- Hamburger Button -->
+        <button id="menu-toggle" class="md:hidden focus:outline-none">
+        <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        </button>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex space-x-6 text-sm">
         <li><a href="index.html" class="hover:underline">Beranda</a></li>
         <li><a href="profilKampung.html" class="hover:underline">Profil Kampung</a></li>
         <li><a href="ceritaWarga.html" class="hover:underline">Cerita Warga</a></li>
@@ -60,8 +72,19 @@
         <li><a href="galeriKampung.html" class="hover:underline">Galeri</a></li>
         <li><a href="tentangKami.html" class="hover:underline">Tentang Kami</a></li>
         </ul>
-    </nav>
+    </div>
 
+    <!-- Mobile Menu -->
+    <ul id="nav-menu"
+        class="md:hidden overflow-hidden max-h-0 transition-all duration-300 ease-in-out flex flex-col space-y-2 mt-4 text-sm">
+        <li><a href="index.html" class="block py-2 px-2 hover:underline">Beranda</a></li>
+        <li><a href="profilKampung.html" class="block py-2 px-2 hover:underline">Profil Kampung</a></li>
+        <li><a href="ceritaWarga.html" class="block py-2 px-2 hover:underline">Cerita Warga</a></li>
+        <li><a href="kulinerUMKM.html" class="block py-2 px-2 hover:underline">Kuliner & UMKM</a></li>
+        <li><a href="galeriKampung.html" class="block py-2 px-2 hover:underline">Galeri</a></li>
+        <li><a href="tentangKami.html" class="block py-2 px-2 hover:underline">Tentang Kami</a></li>
+    </ul>
+    </nav>
 
     <!-- Header -->
     <header class="relative w-2xl mb-10">
@@ -90,33 +113,6 @@
         <button id="next"><img src="src/galeriBulak/RightArrow.png" width="50px"></button>
     </div>
 
-    <script>
-        $(document).ready(function () {
-        let currentIndex = 0;
-        const slides = $('.slide');
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            $('.slides').css('transform', `translateX(-${index * 100}%)`);
-        }
-
-        $('#next').click(function () {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            showSlide(currentIndex);
-        });
-
-        $('#prev').click(function () {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            showSlide(currentIndex);
-        });
-
-        // Auto-slide every 3 seconds
-        setInterval(function () {
-            $('#next').click();
-        }, 3000);
-        });
-    </script>
-
     <!-- Footer -->
     <footer class="bg-[#003459] text-white py-10">
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -144,8 +140,81 @@
         </div>
         <p class="text-center text-sm mt-10">&copy; 2025 Swara Bulak. All rights reserved</p>
     </footer>
-    <!-- jQuery CDN -->
+    
+    <!-- jQuery first -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Your vanilla JS (hamburger menu) -->
+    <script>
+        // Documented above (DOMContentLoaded)
+        document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        let menuOpen = false;
+
+        if (toggleBtn && navMenu) {
+            toggleBtn.addEventListener('click', function () {
+            menuOpen = !menuOpen;
+            navMenu.style.maxHeight = menuOpen ? navMenu.scrollHeight + 'px' : '0';
+            });
+
+            navMenu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                menuOpen = false;
+                navMenu.style.maxHeight = '0';
+            });
+            });
+        }
+        });
+    </script>
+
+    <!-- Your jQuery code (slider, etc) -->
+    <script>
+    // jQuery(document).ready() code
+        $(document).ready(function () {
+        let currentIndex = 0;
+        const slides = $('.slide');
+        const totalSlides = slides.length;
+        const slideInterval = 3000; // 3 seconds
+        let autoSlide;
+
+        function showSlide(index) {
+            const offset = -index * 100 + '%';
+            $('.slides').css('transform', 'translateX(' + offset + ')');
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        function startAutoSlide() {
+            autoSlide = setInterval(nextSlide, slideInterval);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlide);
+        }
+
+        $('#prev').click(function () {
+            stopAutoSlide();
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1;
+            showSlide(currentIndex);
+            startAutoSlide(); // Restart after manual change
+        });
+
+        $('#next').click(function () {
+            stopAutoSlide();
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+            startAutoSlide(); // Restart after manual change
+        });
+
+        // Initialize
+        showSlide(currentIndex);
+        startAutoSlide();
+        });
+    </script>
 </body>
 
 </html>
